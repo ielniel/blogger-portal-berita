@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BeritaHub - Portal Berita Indonesia</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">
+                    <span class="logo-icon">📰</span>
+                    <h1>BeritaHub</h1>
+                </div>
+                
+                <div class="search-container">
+                    <input type="text" id="searchBox" class="search-box" placeholder="Cari berita...">
+                    <span class="search-icon">🔍</span>
+                </div>
+                
+                <div class="nav-menu">
+                    <a href="#nasional">Nasional</a>
+                    <a href="#internasional">Internasional</a>
+                    <a href="#teknologi">Teknologi</a>
+                    <a href="#olahraga">Olahraga</a>
+                </div>
+                
+                <button id="themeToggle" class="theme-toggle">🌙</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2>Selamat Datang di BeritaHub</h2>
+                <p>Portal berita terkini dengan informasi terupdate dari seluruh dunia</p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary">Baca Berita</button>
+                    <button class="btn btn-secondary">Pelajari Lebih Lanjut</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured News -->
+    <section class="featured-section">
+        <div class="container">
+            <h2 class="section-title">Berita Utama</h2>
+            <div class="featured-container">
+                <div class="featured-card">
+                    <img src="https://via.placeholder.com/600x400?text=Berita+Utama+1" alt="Berita Utama 1">
+                    <div class="featured-content">
+                        <span class="badge">Terkini</span>
+                        <h4>Pemerintah Luncurkan Program Transformasi Digital 2026</h4>
+                        <p>Indonesia siap memasuki era digital dengan peluncuran program transformasi terbesar yang melibatkan seluruh sektor pemerintahan...</p>
+                        <div class="featured-meta">
+                            <span>📅 10 Feb 2026</span>
+                            <span>✍️ Redaksi</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="featured-card">
+                    <img src="https://via.placeholder.com/600x400?text=Berita+Utama+2" alt="Berita Utama 2">
+                    <div class="featured-content">
+                        <span class="badge">Trending</span>
+                        <h4>Teknologi AI Terbaru Membantu Diagnosis Kesehatan</h4>
+                        <p>Peneliti mengembangkan algoritma kecerdasan buatan yang dapat mendeteksi penyakit dengan akurasi hingga 98%...</p>
+                        <div class="featured-meta">
+                            <span>📅 09 Feb 2026</span>
+                            <span>✍️ Tim Sains</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="featured-card">
+                    <img src="https://via.placeholder.com/600x400?text=Berita+Utama+3" alt="Berita Utama 3">
+                    <div class="featured-content">
+                        <span class="badge">Populer</span>
+                        <h4>Atlet Indonesia Raih Medali Emas di Ajang Internasional</h4>
+                        <p>Prestasi gemilang diraih oleh delegasi Indonesia di kompetisi olahraga tingkat Asia Pasifik...</p>
+                        <div class="featured-meta">
+                            <span>📅 08 Feb 2026</span>
+                            <span>✍️ Redaksi Olahraga</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nasional Section -->
+    <section id="nasional" class="category-section">
+        <div class="container">
+            <h2 class="section-title">📍 Berita Nasional</h2>
+            <div class="news-grid">
+                <div class="news-card">
+                    <img src="https://via.placeholder.com/400x250?text=Nasional+1" alt="Berita Nasional">
+                    <div class="news-content">
+                        <span class="category-tag">Nasional</span>
+                        <h4>Ekonomi Indonesia Tumbuh 5.2% pada Kuartal IV</h4>
+                        <p>Pertumbuhan ekonomi Indonesia mencapai angka yang positif dengan kontribusi dari sektor industri dan pariwisata...</p>
+                        <div class="news-footer">
+                            <span class="time">2 jam lalu</span>
+                            <button class="read-more">Baca Selengkapnya →</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="news-card">
+                    <img src="https://via.placeholder.com/400x250?text=Nasional+2" alt="Berita Nasional">
+                    <div class="news-content">
+                        <span class="category-tag">Nasional</span>
+                        <h4>Proyek Infrastruktur Besar Sedang Dikerjakan di Jakarta</h4>
+                        <p>Pembangunan proyek infrastruktur megah terus berlanjut dengan target penyelesaian tahun depan...</p>
+                        <div class="news-footer">
+                            <span class="time">4 jam lalu</span>
+                            <button class="read-more">Baca Selengkapnya →</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="news-card">
+                    <img src="https://via.placeholder.com/400x250?text=Nasional+3" alt="Berita Nasional">
+                    <div class="news-content">
+                        <span class="category-tag">Nasional</span>
+                        <h4>Program Kesehatan Nasional Menjangkau Daerah Terpencil</h4>
+                        <p>Kementerian Kesehatan melaksanakan program vaksinasi dan pemeriksaan kesehatan gratis ke seluruh pelosok negeri...</p>
+                        <div class="news-footer">
+                            <span class="time">6 jam lalu</span>
+                            <button class="read-more">Baca Selengkapnya →</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="news-card">
+                    <img src="https://via.placeholder.com/400x250?text=Nasional+4" alt="Berita Nasional">
+                    <div class="news-content">
+                        <span class="category-tag">Nasional</span>
+                        <h4>Pendidikan Digital Menjadi Prioritas Pemerintah</h4>
+                        <p>Investasi dalam bidang pendidikan digital terus ditingkatkan untuk mempersiapkan generasi muda Indonesia...</p>
+                        <div class="news-footer">
+                            <span class="time">8 jam lalu</span>
+                            <button class="read-more">Baca Selengkapnya →</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Internasional Section -->
+    <section id="internasional" class="category-section">
+        <div class="container">
+            <h2 class="section-title">🌍 Berita Internasional</h2>
+            <div class="news-grid">
+                <div class="news-card">
+                    <img src="https://via.placeholder.com/400x250?text=Internasional+1" alt="Berita Internasional">
+                    <div class="news-content">
+                        <span class="category-tag">Internasional</span>
+                        <h4>Forum Dunia Diskusikan Perubahan Iklim Global</h4>
+                        <p>Negara-negara di seluruh dunia berkumpul untuk membahas strategi pengurangan emisi karbon...</p>
+                        <div class="news-footer">
+                            <span class="time">1 jam lalu</span>
+                            <button class="read-more">Baca Selengkapnya →</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="news-card">
+                    <img src="https://via.placeholder.com/400x250?text=Internasional+2" alt="Berita Internasional">
+                    <div class="news-content">
+                        <span class="category-tag">Internasional</span>
+                        <h4>Penemuan Baru dalam Eksplorasi Luar Angkasa</h4>
+                        <p>Misi antariksa internasional menemukan bukti baru tentang kemungkinan kehidupan di planet lain...</p>
+                        <div class="news-footer">
+                            <span class="time">3 jam lalu</span>
+                            <button class="read-more">Baca Selengkapnya →</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="news-card">
+                    <img src="https://via.placeholder.com/400x250?text=Internasional+3" alt="Berita Internasional">
+                    <div class="news-content">
+                        <span class="category-tag">Internasional</span>
+                        <h4>Ekonomi Eropa Mengalami Pertumbuhan Signifikan</h4>
+                        <p>Laporan terbaru menunjukkan pertumbuhan ekonomi zona Eropa melampaui ekspektasi analis...</p>
+                        <div class="news-footer">
+                            <span class="time">5 jam lalu</span>
+                            <button class="read-more">Baca Selengkapnya →</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="news-card">
+                    <img src="https://via.placeholder.com/400x250?text=Internasional+4" alt="Berita Internasional">
+                    <div class="news-content">
+                        <span class="category-tag">Internasional</span>
+                        <h4>Perjanjian Perdagangan Baru Menghubungkan Lima Negara</h4>
+                        <p>Kerjasama dagang baru ditandatangani untuk meningkatkan pertumbuhan ekonomi regional...</p>
+                        <div class="news-footer">
+                            <span class="time">7 jam lalu</span>
+                            <button class="read-more">Baca Selengkapnya →</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Teknologi Section -->
+    <section id="teknologi" class="category-section">
+        <div class="container">
+            <h2 class="section-title">💻 Berita Teknologi</h2>
+            <div class="news-grid">
+                <div class="news-card">
+                    <img src="https://via.placeholder.com/400x250?text=Teknologi+1" alt="Berita Teknologi">
+                    <div class="news-content">
+                        <span class="category-tag">Teknologi</span>
+                        <h4>Smartphone Terbaru dengan Processor Ultra Cepat Diluncurkan</h4>
+                        <p>Produsen teknologi terkemuka menghadirkan inovasi smartphone dengan processor generasi terbaru...</p>
+                        <div class="news-footer">
+                            <span class="time">1 jam lalu</span>
+                            <button class="read-more">Baca Selengkapnya →</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="news-card">
+                    <img src="https://via.placeholder.com/400x250?text=Teknologi+2" alt="Berita Teknologi">
+                    <div class="news-content">
+                        <span class="category-tag">Teknologi</span>
+                        <h4>Kecerdasan Buatan Semakin Canggih dalam Analisis Data</h4>
+                        <p>Perkembangan AI terus berlanjut dengan kemampuan baru yang memudahkan analisis data kompleks...</p>
+                        <div class="news-footer">
+                            <span class="time">3 jam lalu</span>
+                            <button class="read-more">Baca Selengkapnya →</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="news-card">
+                    <img src="https://via.placeholder.com/400x250?text=Teknologi+3" alt="Berita Teknologi">
+                    <div class="news-content">
+                        <span class="category-tag">Teknologi</span>
+                        <h4>Cloud Computing Menjadi Standar Industri Global</h4>
+                        <p>Perusahaan di seluruh dunia beralih ke solusi cloud untuk efisiensi operasional...</p>
+                        <div class="news-footer">
+                            <span class="time">5 jam lalu</span>
+                            <button class="read-more">Baca Selengkapnya →</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="news-card">
+                    <img src="https://via.placeholder.com/400x250?text=Teknologi+4" alt="Berita Teknologi">
+                    <div class="news-content">
+                        <span class="category-tag">Teknologi</span>
+                        <h4>Keamanan Cyber Menjadi Fokus Utama Perusahaan Tech</h4>
+                        <p>Investasi dalam keamanan siber terus meningkat seiring dengan meningkatnya ancaman digital...</p>
+                        <div class="news-footer">
+                            <span class="time">7 jam lalu</span>
+                            <button class="read-more">Baca Selengkapnya →</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Olahraga Section -->
+    <section id="olahraga" class="category-section">
+        <div class="container">
+            <h2 class="section-title">⚽ Berita Olahraga</h2>
+            <div class="news-grid">
+                <div class="news-card">
+                    <img src="https://via.placeholder.com/400x250?text=Olahraga+1" alt="Berita Olahraga">
+                    <div class="news-content">
+                        <span class="category-tag">Olahraga</span>
+                        <h4>Tim Nasional Lolos ke Semifinal Kompetisi Asia</h4>
+                        <p>Kemenangan gemilang membawa tim nasional melaju ke babak semifinal dengan performa memukau...</p>
+                        <div class="news-footer">
+                            <span class="time">2 jam lalu</span>
+                            <button class="read-more">Baca Selengkapnya →</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="news-card">
+                    <img src="https://via.placeholder.com/400x250?text=Olahraga+2" alt="Berita Olahraga">
+                    <div class="news-content">
+                        <span class="category-tag">Olahraga</span>
+                        <h4>Atlet Renang Indonesia Pecahkan Rekor Nasional</h4>
+                        <p>Prestasi spektakuler diraih dengan memecahkan rekor yang telah bertahan selama puluhan tahun...</p>
+                        <div class="news-footer">
+                            <span class="time">4 jam lalu</span>
+                            <button class="read-more">Baca Selengkapnya →</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="news-card">
+                    <img src="https://via.placeholder.com/400x250?text=Olahraga+3" alt="Berita Olahraga">
+                    <div class="news-content">
+                        <span class="category-tag">Olahraga</span>
+                        <h4>Turnamen Sepak Bola Internasional Dimulai Bulan Depan</h4>
+                        <p>Persiapan final sedang dilakukan untuk menyambut turnamen olahraga terbesar tahun ini...</p>
+                        <div class="news-footer">
+                            <span class="time">6 jam lalu</span>
+                            <button class="read-more">Baca Selengkapnya →</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="news-card">
+                    <img src="https://via.placeholder.com/400x250?text=Olahraga+4" alt="Berita Olahraga">
+                    <div class="news-content">
+                        <span class="category-tag">Olahraga</span>
+                        <h4>Pelatih Baru Ditunjuk untuk Tim Nasional Basket</h4>
+                        <p>Pemilihan pelatih strategis dilakukan dalam rangka persiapan kompetisi internasional mendatang...</p>
+                        <div class="news-footer">
+                            <span class="time">8 jam lalu</span>
+                            <button class="read-more">Baca Selengkapnya →</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section">
+        <div class="container">
+            <div class="newsletter-content">
+                <h2>Berlangganan Newsletter Kami</h2>
+                <p>Dapatkan berita terkini langsung ke email Anda setiap hari</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Masukkan email Anda" required>
+                    <button type="submit" class="btn btn-primary">Berlangganan</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Tentang BeritaHub</h4>
+                    <p>Portal berita digital terpercaya yang menyediakan informasi terkini dari berbagai sumber berkualitas.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Kategori</h4>
+                    <ul>
+                        <li><a href="#nasional">Nasional</a></li>
+                        <li><a href="#internasional">Internasional</a></li>
+                        <li><a href="#teknologi">Teknologi</a></li>
+                        <li><a href="#olahraga">Olahraga</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Hubungi Kami</h4>
+                    <ul>
+                        <li>📧 info@beritahub.com</li>
+                        <li>📞 +62 21 XXXX XXXX</li>
+                        <li>📍 Jakarta, Indonesia</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Ikuti Kami</h4>
+                    <div class="social-links">
+                        <a href="#" title="Facebook">📘</a>
+                        <a href="#" title="Twitter">𝕏</a>
+                        <a href="#" title="Instagram">📷</a>
+                        <a href="#" title="YouTube">▶️</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 BeritaHub. Semua hak dilindungi. | <a href="#">Kebijakan Privasi</a> | <a href="#">Syarat & Ketentuan</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
