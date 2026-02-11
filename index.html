@@ -1,45 +1,424 @@
-<!DOCTYPE html>
-<html lang="en">
+<?xml version="1.0" encoding="UTF-8" ?>
+<html xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">  <!-- Ensure this references your CSS -->
-    <title>Your Blog Title</title>
+    <meta charset='UTF-8'/>
+    <meta content='width=device-width, initial-scale=1.0' name='viewport'/>
+    <meta content='Portal berita terpercaya' name='description'/>
+    <meta content='Portal Berita' property='og:title'/>
+    <meta content='website' property='og:type'/>
+    <meta content='summary_large_image' name='twitter:card'/>
+    <meta content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' name='robots'/>
+    <meta content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' name='googlebot'/>
+    <link href='https://yourdomain.com' rel='canonical'/>
+    <link href='/sitemap.xml' rel='sitemap' type='application/xml'/>
+    <link href='https://fonts.googleapis.com' rel='preconnect'/>
+    <link href='https://fonts.gstatic.com' rel='preconnect'/>
+    <link href='https://www.google.com' rel='dns-prefetch'/>
+    <link href='https://www.googletagmanager.com' rel='dns-prefetch'/>
+    <title><data:blog.title/></title>
+    <script async='true' src='https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX'/>
+    <script type='application/ld+json'><![CDATA[
+    {
+      "@context": "https://schema.org",
+      "@type": "Blog",
+      "name": "Portal Berita",
+      "description": "Portal berita terpercaya",
+      "url": "https://yourdomain.com",
+      "sameAs": [
+        "https://www.facebook.com/yourpage",
+        "https://twitter.com/yourpage",
+        "https://www.instagram.com/yourpage"
+      ],
+      "author": {
+        "@type": "Organization",
+        "name": "BeritaHub",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://yourdomain.com/logo.png"
+        }
+      }
+    }
+    ]]></script>
+    <b:skin><![CDATA[
+        *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}body{font-family:system-ui,sans-serif;background:#f9fafb;color:#1f2937;transition:background 0.3s;line-height:1.6}body.dark{background:#1e1e1e;color:#fffdfc}.navbar{background:#fff;padding:12px 0;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,0.08)}body.dark .navbar{background:#2d2d30}.container{max-width:1200px;margin:0 auto;padding:0 16px}.nav-flex{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:8px 0}.logo{font-size:24px;font-weight:700;color:#2563eb;text-decoration:none}.nav-center{display:flex;gap:20px;align-items:center}.hamburger{display:none;background:0;border:0;font-size:24px;cursor:pointer;color:#1f2937}body.dark .hamburger{color:#fffdfc}.hamburger.active span{color:#2563eb}body.dark .hamburger.active span{color:#8775f5}.theme-dropdown{position:relative;display:inline-block}.themebtn{background:0;border:0;font-size:24px;cursor:pointer;padding:8px}.dropdown-menu{display:none;position:absolute;right:0;top:110%;background:#fff;border:1px solid #e5e7eb;border-radius:8px;z-index:1000;min-width:150px}body.dark .dropdown-menu{background:#2d2d30}.dropdown-menu.show{display:block}.dropdown-item{display:block;width:100%;padding:12px 16px;border:0;background:0;text-align:left;cursor:pointer;font-size:14px;color:#1f2937}.dropdown-item:hover{background:#f3f4f6}body.dark .dropdown-item{color:#fffdfc}body.dark .dropdown-item:hover{background:#3d3d40}.dropdown-item.active{background:#e0e7ff;color:#2563eb;font-weight:600}body.dark .dropdown-item.active{background:#1e3a8a;color:#8775f5}.header{background:linear-gradient(135deg,#2563eb 0%,#1d4ed8 100%);color:#fff;padding:80px 20px;text-align:center}.header h1{font-size:48px;margin-bottom:16px;font-weight:700}.header p{font-size:20px;opacity:0.95}.breadcrumb{background:#fff;padding:12px 20px;margin:16px 0;border-radius:8px;font-size:14px;box-shadow:0 2px 8px rgba(0,0,0,0.08)}body.dark .breadcrumb{background:#252526}.breadcrumb a{color:#2563eb;text-decoration:0;margin:0 4px}body.dark .breadcrumb a{color:#8775f5}.breadcrumb a:hover{text-decoration:underline}.breadcrumb span{color:#6b7280;margin:0 4px}body.dark .breadcrumb span{color:#989b9f}.featured-section{display:none !important;visibility:hidden !important;height:0 !important;margin:0 !important;padding:0 !important;border:none !important;background:none !important}.featured-gallery{display:grid;grid-template-columns:1fr;gap:20px;margin:20px 0;background:none}.featured-item{position:relative;border-radius:12px;overflow:hidden;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,0.1);transition:all 0.3s;background:none}body.dark .featured-item{box-shadow:0 4px 12px rgba(0,0,0,0.3);background:none}.featured-item:hover{transform:translateY(-4px);box-shadow:0 8px 20px rgba(0,0,0,0.15)}body.dark .featured-item:hover{box-shadow:0 8px 20px rgba(0,0,0,0.4)}.featured-img{width:100%;height:300px;object-fit:cover;display:block}.featured-overlay{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(180deg,transparent 0%,rgba(0,0,0,0.8) 100%);padding:20px;color:#fff;min-height:120px;display:flex;flex-direction:column;justify-content:flex-end}.featured-overlay h2{font-size:24px;font-weight:700;margin-bottom:8px;line-height:1.3;color:#fff}.featured-overlay p{font-size:13px;opacity:0.9;margin:0;color:#fff}.category-nav{background:#fff;padding:16px 20px;margin:20px 0;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.08);overflow-x:auto}body.dark .category-nav{background:#252526}.category-list{display:flex;gap:12px;min-width:min-content}.category-btn{padding:8px 16px;border:1px solid #e5e7eb;border-radius:6px;background:#f9fafb;color:#1f2937;cursor:pointer;font-size:14px;font-weight:500;white-space:nowrap;transition:all 0.2s}.category-btn:hover{background:#e0e7ff;border-color:#2563eb;color:#2563eb}.category-btn.active{background:#2563eb;color:#fff;border-color:#2563eb}body.dark .category-btn{background:#3d3d40;border-color:#4d4d50;color:#fffdfc}body.dark .category-btn:hover{background:#1e3a8a;border-color:#8775f5}body.dark .category-btn.active{background:#2563eb;color:#fff}.toc{background:#fff;border-radius:10px;padding:20px;margin:20px 0;box-shadow:0 2px 8px rgba(0,0,0,0.08)}body.dark .toc{background:#252526}.toc h3{font-size:16px;font-weight:700;margin-bottom:12px}.toc ul{list-style:0}.toc li{margin:8px 0}.toc a{color:#2563eb;text-decoration:0;font-size:14px}body.dark .toc a{color:#8775f5}.toc a:hover{text-decoration:underline}.main-content{display:grid;grid-template-columns:1fr 300px;gap:24px;padding:60px 20px}.posts{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:24px}.post-card{background:#fff;border-radius:12px;padding:0;box-shadow:0 2px 8px rgba(0,0,0,0.08);cursor:pointer;display:flex;flex-direction:column;animation:fadeIn 0.5s ease-in;overflow:hidden}@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}body.dark .post-card{background:#252526}.post-card:hover{transform:translateY(-8px)}.post-image{width:100%;height:180px;background:linear-gradient(135deg,#e0e7ff 0%,#f0f9ff 100%);object-fit:cover;display:block}body.dark .post-image{background:linear-gradient(135deg,#1e3a8a 0%,#0c2340 100%)}.post-content{padding:20px;display:flex;flex-direction:column;flex:1}.post-title{font-size:18px;font-weight:600;margin-bottom:8px}.post-meta{display:flex;gap:12px;font-size:12px;color:#6b7280;margin-bottom:8px;flex-wrap:wrap}body.dark .post-meta{color:#989b9f}.post-meta-item{display:flex;align-items:center;gap:4px}.post-date{font-size:12px;color:#6b7280;margin-bottom:12px}body.dark .post-date{color:#989b9f}.post-excerpt{color:#6b7280;font-size:14px;margin-bottom:auto}body.dark .post-excerpt{color:#989b9f}.sidebar{position:sticky;top:100px}.sidebar-widget{background:#fff;border-radius:10px;padding:20px;margin-bottom:20px;box-shadow:0 2px 8px rgba(0,0,0,0.08)}body.dark .sidebar-widget{background:#252526}.sidebar-widget h3{font-size:16px;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:8px}.sidebar-widget h3 span{font-size:18px}.popular-item{padding:12px 0;border-bottom:1px solid #e5e7eb;cursor:pointer;transition:all 0.2s}body.dark .popular-item{border-bottom-color:#4d4d50}.popular-item:last-child{border-bottom:0}.popular-item:hover{color:#2563eb;padding-left:4px}body.dark .popular-item:hover{color:#8775f5}.popular-rank{display:inline-block;min-width:24px;text-align:center;font-weight:700;color:#2563eb;margin-right:8px}body.dark .popular-rank{color:#8775f5}.popular-title{font-size:13px;font-weight:600;margin-bottom:4px;line-height:1.3}.popular-meta{font-size:11px;color:#6b7280;display:flex;gap:8px}body.dark .popular-meta{color:#989b9f}.recent-item{padding:12px 0;border-bottom:1px solid #e5e7eb}body.dark .recent-item{border-bottom-color:#4d4d50}.recent-item:last-child{border-bottom:0}.recent-item a{color:#2563eb;text-decoration:0;font-size:14px;font-weight:500;display:block;margin-bottom:6px}.recent-item a:hover{text-decoration:underline}body.dark .recent-item a{color:#8775f5}.recent-date{font-size:12px;color:#6b7280}body.dark .recent-date{color:#989b9f}.author-bio{background:#fff;border-radius:10px;padding:20px;margin:40px 0;box-shadow:0 2px 8px rgba(0,0,0,0.08);display:flex;gap:16px}body.dark .author-bio{background:#252526}.author-avatar{width:80px;height:80px;border-radius:50%;background:#2563eb;color:#fff;display:flex;align-items:center;justify-content:center;font-size:36px;flex-shrink:0}.author-info h4{font-size:16px;font-weight:700;margin-bottom:4px}.author-info p{font-size:14px;color:#6b7280}body.dark .author-info p{color:#989b9f}.related-section{margin:60px 0}.related-section h2{font-size:28px;margin-bottom:24px;font-weight:700}.related-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:20px}.related-item{background:#fff;border-radius:10px;padding:16px;box-shadow:0 2px 8px rgba(0,0,0,0.08);transition:all 0.3s;cursor:pointer}body.dark .related-item{background:#252526}.related-item:hover{transform:translateY(-4px);box-shadow:0 8px 16px rgba(0,0,0,0.12)}body.dark .related-item:hover{box-shadow:0 8px 16px rgba(0,0,0,0.3)}.related-item h3{font-size:16px;font-weight:600;margin-bottom:8px;line-height:1.3}.related-date{font-size:12px;color:#6b7280}body.dark .related-date{color:#989b9f}.footer{background:#1f2937;color:#fff;padding:40px 20px;text-align:center}body.dark .footer{background:#1e1e1e}.footer-links{margin:16px 0;display:flex;gap:20px;justify-content:center;flex-wrap:wrap;font-size:14px}.footer-links a{color:#93c5fd;text-decoration:0;transition:color 0.2s}.footer-links a:hover{color:#fff}.footer-credit{font-size:12px;margin-top:12px;opacity:0.7}#backToTop{display:none;position:fixed;bottom:30px;right:30px;background:#2563eb;color:#fff;border:0;border-radius:50%;width:50px;height:50px;font-size:24px;cursor:pointer;z-index:99;box-shadow:0 4px 12px rgba(37,99,235,0.4);transition:all 0.3s}#backToTop:hover{background:#1d4ed8;transform:translateY(-3px);box-shadow:0 6px 16px rgba(37,99,235,0.6)}#backToTop.show{display:flex;align-items:center;justify-content:center}body.dark #backToTop{box-shadow:0 4px 12px rgba(135,117,245,0.4)}body.dark #backToTop:hover{box-shadow:0 6px 16px rgba(135,117,245,0.6)}.loader{display:none;position:fixed;top:0;left:0;width:100%;height:4px;background:linear-gradient(90deg,#2563eb,#1d4ed8);animation:loading 1.5s infinite;z-index:1001}@keyframes loading{0%{width:0}50%{width:80%}100%{width:100%}}.loader.show{display:block}@media (max-width:768px){.hamburger{display:block}.navbar{padding:12px 0}.nav-center{flex-direction:column;position:absolute;top:60px;left:0;right:0;background:#fff;border-radius:0 0 8px 8px;box-shadow:0 4px 12px rgba(0,0,0,0.1);display:none;flex-direction:column;gap:12px;padding:16px;z-index:999}body.dark .nav-center{background:#2d2d30}.nav-center.show{display:flex}.main-content{grid-template-columns:1fr;gap:20px;padding:40px 16px}.posts{grid-template-columns:1fr}.post-image{height:150px}.sidebar{position:static;top:auto}.category-nav{margin:16px 0}.related-grid{grid-template-columns:1fr}.related-section h2{font-size:24px}.author-bio{flex-direction:column;text-align:center}.author-avatar{margin:0 auto}.footer-links{flex-direction:column;gap:12px}.toc{margin:16px 0}.post-meta{font-size:11px}.popular-title{font-size:12px}#backToTop{width:45px;height:45px;font-size:20px;bottom:20px;right:20px}.featured-img{height:200px}}
+    ]]></b:skin>
 </head>
 <body>
-    <header>
-        <h1>Your Blog Header</h1>
-    </header>
-    <nav>
-        <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
-    </nav>
+    <div class='loader' id='loader'/>
 
-    <main>
-        <div class="featured-gallery">
-            <h2>Featured Gallery</h2>
-            <!-- Content for featured-gallery -->
-            <div class="featured-overlay">
-                <!-- Include your overlay structure here -->
+    <nav class='navbar'>
+        <div class='container'>
+            <div class='nav-flex'>
+                <a class='logo' href='/'>Berita</a>
+                <div class='nav-center' id='navCenter'>
+                    <div class='theme-dropdown'>
+                        <button class='themebtn' id='themeBtn' title='Dark Mode' type='button'><span id='iconSpan'>☀️</span></button>
+                        <div class='dropdown-menu' id='themeMenu'>
+                            <button class='dropdown-item' data-theme='light' type='button'>Light</button>
+                            <button class='dropdown-item' data-theme='dark' type='button'>Dark</button>
+                        </div>
+                    </div>
+                </div>
+                <button class='hamburger' id='hamburger' type='button'><span>Menu</span></button>
             </div>
         </div>
-        
-        <div class="blog-posts">
-            <!-- Existing Blogger widget structures and blog posts go here -->
-        </div>
-    </main>
-    
-    <style>
-        .featured-section {
-            display: none;
-        }
-    </style>
+    </nav>
 
-    <footer>
-        <p>&copy; 2026 Your Blog</p>
+    <header class='header'>
+        <div class='container'>
+            <h1><data:blog.title/></h1>
+            <p><data:blog.description/></p>
+        </div>
+    </header>
+
+    <div class='container'>
+        <div class='breadcrumb'>
+            <a href='/'>Home</a>
+            <span>/</span>
+            <a href='/search/label/news'>News</a>
+            <span>/</span>
+            <span>Latest</span>
+        </div>
+
+        <div class='featured-gallery'>
+            <div class='featured-item'>
+                <img alt='Featured news' class='featured-img' src='https://via.placeholder.com/1200x300?text=Berita+Utama'/>
+                <div class='featured-overlay'>
+                    <h2>Berita Utama: Breaking News Update Terbaru</h2>
+                    <p>👁️ 5.2K views • 8 min read</p>
+                </div>
+            </div>
+        </div>
+
+        <nav class='category-nav'>
+            <div class='category-list'>
+                <button class='category-btn active' data-category='all'>All</button>
+                <button class='category-btn' data-category='technology'>Technology</button>
+                <button class='category-btn' data-category='business'>Business</button>
+                <button class='category-btn' data-category='lifestyle'>Lifestyle</button>
+                <button class='category-btn' data-category='sports'>Sports</button>
+                <button class='category-btn' data-category='entertainment'>Entertainment</button>
+            </div>
+        </nav>
+
+        <div class='main-content'>
+            <div>
+                <b:section id='main-posts' showaddelement='false'>
+                  <b:widget id='Blog1' locked='false' title='Postingan Blog' type='Blog' version='1'>
+                    <b:includable id='main'>
+                            <section class='posts' id='posts'>
+                                <b:loop values='data:posts' var='post'>
+                                    <div class='post-card' itemscope='itemscope' itemtype='https://schema.org/BlogPosting' loading='lazy'>
+                                        <img alt='Post thumbnail' class='post-image' itemprop='image' loading='lazy' src='https://via.placeholder.com/400x180?text=Post+Image'/>
+                                        <div class='post-content'>
+                                            <meta content='https://yourdomain.com' itemprop='mainEntityOfPage'/>
+                                            <h3 class='post-title' itemprop='headline'><data:post.title/></h3>
+                                            <div class='post-meta'>
+                                                <span class='post-meta-item'>
+                                                    <span>Read time</span>
+                                                    <span id='readTime'>5 min</span>
+                                                </span>
+                                                <span class='post-meta-item'>
+                                                    <span>Views</span>
+                                                    <span class='viewCount' id='views'>0</span>
+                                                </span>
+                                            </div>
+                                            <div class='post-date'><time itemprop='datePublished'><data:post.date/></time></div>
+                                            <p class='post-excerpt' itemprop='description'><data:post.snippet/></p>
+                                            <meta content='BeritaHub' itemprop='author'/>
+                                        </div>
+                                    </div>
+                                </b:loop>
+                            </section>
+                        </b:includable>
+                  </b:widget>
+                </b:section>
+
+                <div class='author-bio' id='about'>
+                    <div class='author-avatar'>A</div>
+                    <div class='author-info'>
+                        <h4>About BeritaHub</h4>
+                        <p>Your trusted news source. Delivering quality journalism since 2026.</p>
+                    </div>
+                </div>
+
+                <section class='related-section' id='related'>
+                    <h2>Related Posts</h2>
+                    <div class='related-grid'>
+                        <div class='related-item' itemscope='itemscope' itemtype='https://schema.org/BlogPosting'>
+                            <h3 itemprop='headline'>Related Post 1</h3>
+                            <p class='related-date'><time itemprop='datePublished'>10 Feb 2026</time></p>
+                            <meta content='BeritaHub' itemprop='author'/>
+                        </div>
+                        <div class='related-item' itemscope='itemscope' itemtype='https://schema.org/BlogPosting'>
+                            <h3 itemprop='headline'>Related Post 2</h3>
+                            <p class='related-date'><time itemprop='datePublished'>09 Feb 2026</time></p>
+                            <meta content='BeritaHub' itemprop='author'/>
+                        </div>
+                        <div class='related-item' itemscope='itemscope' itemtype='https://schema.org/BlogPosting'>
+                            <h3 itemprop='headline'>Related Post 3</h3>
+                            <p class='related-date'><time itemprop='datePublished'>08 Feb 2026</time></p>
+                            <meta content='BeritaHub' itemprop='author'/>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <aside class='sidebar'>
+                <div class='sidebar-widget'>
+                    <h3><span>🔥</span>Popular Posts</h3>
+                    <div class='popular-item'>
+                        <span class='popular-rank'>1</span>
+                        <div class='popular-title'>Top Story 1</div>
+                        <div class='popular-meta'>
+                            <span>2.5K views</span>
+                            <span>15 shares</span>
+                        </div>
+                    </div>
+                    <div class='popular-item'>
+                        <span class='popular-rank'>2</span>
+                        <div class='popular-title'>Top Story 2</div>
+                        <div class='popular-meta'>
+                            <span>2.1K views</span>
+                            <span>12 shares</span>
+                        </div>
+                    </div>
+                    <div class='popular-item'>
+                        <span class='popular-rank'>3</span>
+                        <div class='popular-title'>Top Story 3</div>
+                        <div class='popular-meta'>
+                            <span>1.8K views</span>
+                            <span>10 shares</span>
+                        </div>
+                    </div>
+                    <div class='popular-item'>
+                        <span class='popular-rank'>4</span>
+                        <div class='popular-title'>Top Story 4</div>
+                        <div class='popular-meta'>
+                            <span>1.5K views</span>
+                            <span>8 shares</span>
+                        </div>
+                    </div>
+                    <div class='popular-item'>
+                        <span class='popular-rank'>5</span>
+                        <div class='popular-title'>Top Story 5</div>
+                        <div class='popular-meta'>
+                            <span>1.2K views</span>
+                            <span>6 shares</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class='sidebar-widget'>
+                    <h3>Recent Posts</h3>
+                    <div class='recent-item'>
+                        <a href='/'>Post 1</a>
+                        <span class='recent-date'>Today</span>
+                    </div>
+                    <div class='recent-item'>
+                        <a href='/'>Post 2</a>
+                        <span class='recent-date'>Yesterday</span>
+                    </div>
+                    <div class='recent-item'>
+                        <a href='/'>Post 3</a>
+                        <span class='recent-date'>2 days ago</span>
+                    </div>
+                    <div class='recent-item'>
+                        <a href='/'>Post 4</a>
+                        <span class='recent-date'>3 days ago</span>
+                    </div>
+                    <div class='recent-item'>
+                        <a href='/'>Post 5</a>
+                        <span class='recent-date'>4 days ago</span>
+                    </div>
+                </div>
+
+                <div class='sidebar-widget'>
+                    <h3>Ad Space</h3>
+                    Ad
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <div class='container'>
+        <div class='toc'>
+            <h3>📍 Quick Navigation</h3>
+            <ul>
+                <li><a href='#posts'>Latest Posts</a></li>
+                <li><a href='#related'>Related Posts</a></li>
+                <li><a href='#about'>About Us</a></li>
+                <li><a href='/'>Back to Home</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <button id='backToTop' title='Back to Top'><span>Up</span></button>
+
+    <footer class='footer'>
+        <p>Copyright 2026 BeritaHub. All rights reserved.</p>
+        <div class='footer-links'>
+            <a href='/about'>About</a>
+            <a href='/privacy'>Privacy Policy</a>
+            <a href='/contact'>Contact Us</a>
+            <a href='/disclaimer'>Disclaimer</a>
+            <a href='/sitemap.xml'>Sitemap</a>
+            <a href='/robots.txt'>Robots.txt</a>
+        </div>
+        <p class='footer-credit'>Trusted news source since 2026</p>
     </footer>
+
+    <script type='text/javascript'>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
+
+        var loader = document.getElementById('loader');
+        
+        window.addEventListener('load', function() {
+            loader.classList.remove('show');
+        });
+
+        var hamburger = document.getElementById('hamburger');
+        var navCenter = document.getElementById('navCenter');
+        
+        hamburger.addEventListener('click', function() {
+            navCenter.classList.toggle('show');
+        });
+
+        var btn = document.getElementById('themeBtn');
+        var iconSpan = document.getElementById('iconSpan');
+        var menu = document.getElementById('themeMenu');
+        var items = menu.querySelectorAll('.dropdown-item');
+        
+        function updateUI(theme) {
+            document.body.classList.remove('dark');
+            if (theme === 'dark') {
+                document.body.classList.add('dark');
+                iconSpan.innerHTML = String.fromCodePoint(0x1F319);
+            } else {
+                iconSpan.innerHTML = String.fromCodePoint(0x2600);
+            }
+            
+            items.forEach(function(item) {
+                item.classList.remove('active');
+                if (item.dataset.theme === theme) {
+                    item.classList.add('active');
+                }
+            });
+            
+            localStorage.setItem('theme', theme);
+        }
+        
+        var savedTheme = localStorage.getItem('theme') || 'light';
+        updateUI(savedTheme);
+        
+        btn.addEventListener('click', function() {
+            menu.classList.toggle('show');
+        });
+        
+        items.forEach(function(item) {
+            item.addEventListener('click', function() {
+                var theme = this.dataset.theme;
+                updateUI(theme);
+                menu.classList.remove('show');
+            });
+        });
+        
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.theme-dropdown')) {
+                menu.classList.remove('show');
+            }
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'd' || e.key === 'D') {
+                var currentTheme = localStorage.getItem('theme') || 'light';
+                var newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                updateUI(newTheme);
+            }
+        });
+
+        var categoryBtns = document.querySelectorAll('.category-btn');
+        categoryBtns.forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                categoryBtns.forEach(function(b) {
+                    b.classList.remove('active');
+                });
+                this.classList.add('active');
+                var category = this.dataset.category;
+                gtag('event', 'category_filter', {category: category});
+            });
+        });
+
+        function calculateReadTime(text) {
+            var wordsPerMinute = 200;
+            var words = text.trim().split(/\s+/).length;
+            var minutes = Math.ceil(words / wordsPerMinute);
+            return minutes + ' min';
+        }
+
+        var readTimeElements = document.querySelectorAll('#readTime');
+        readTimeElements.forEach(function(el) {
+            var card = el.closest('.post-card');
+            var excerpt = card.querySelector('.post-excerpt');
+            if (excerpt) {
+                var readTime = calculateReadTime(excerpt.textContent);
+                el.textContent = readTime;
+            }
+        });
+
+        var viewCounts = document.querySelectorAll('.viewCount');
+        viewCounts.forEach(function(el) {
+            var randomViews = Math.floor(Math.random() * 5000) + 100;
+            el.textContent = randomViews.toLocaleString();
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            gtag('event', 'page_view');
+        });
+
+        var backToTopBtn = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        });
+
+        backToTopBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            loader.classList.add('show');
+            setTimeout(function() {
+                loader.classList.remove('show');
+            }, 1500);
+        });
+
+        document.addEventListener('click', function(e) {
+            var postCard = e.target.closest('.post-card');
+            if (postCard) {
+                var title = postCard.querySelector('.post-title').textContent;
+                gtag('event', 'post_click', {post_title: title});
+            }
+        });
+
+        var popularItems = document.querySelectorAll('.popular-item');
+        popularItems.forEach(function(item) {
+            item.addEventListener('click', function() {
+                var title = this.querySelector('.popular-title').textContent;
+                var rank = this.querySelector('.popular-rank').textContent;
+                gtag('event', 'popular_post_click', {post_title: title, rank: rank});
+            });
+        });
+    </script>
 </body>
 </html>
