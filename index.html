@@ -432,6 +432,10 @@
                 return;
             }
 
+            // Constants
+            var BYTES_TO_MB = 1048576;
+            var MAX_INTERACTIONS = 5;
+
             var isDevelopment = window.location.hostname === 'localhost' || 
                                window.location.hostname === '127.0.0.1' ||
                                window.location.hostname.includes('test');
@@ -602,6 +606,8 @@
             // Track user interaction response time
             function trackInteractionResponseTime() {
                 var interactions = [];
+                var clickHandler = null;
+                var keydownHandler = null;
                 
                 function recordInteraction(eventType) {
                     return function(e) {
@@ -615,8 +621,8 @@
                                 responseTime: Math.round(responseTime)
                             });
                             
-                            // Calculate average after collecting some interactions
-                            if (interactions.length >= 5) {
+                            // Calculate average after collecting enough interactions
+                            if (interactions.length >= MAX_INTERACTIONS) {
                                 var total = interactions.reduce(function(sum, item) {
                                     return sum + item.responseTime;
                                 }, 0);
@@ -625,16 +631,26 @@
                                 if (isDevelopment) {
                                     console.log('Average Interaction Response Time:', performanceMetrics.interactionResponseTime + 'ms');
                                 }
+                                
+                                // Remove event listeners to prevent memory growth
+                                if (clickHandler) {
+                                    document.removeEventListener('click', clickHandler);
+                                }
+                                if (keydownHandler) {
+                                    document.removeEventListener('keydown', keydownHandler);
+                                }
                             }
                         });
                     };
                 }
                 
                 // Track click interactions
-                document.addEventListener('click', recordInteraction('click'), {once: false, passive: true});
+                clickHandler = recordInteraction('click');
+                document.addEventListener('click', clickHandler, {passive: true});
                 
                 // Track keyboard interactions
-                document.addEventListener('keydown', recordInteraction('keydown'), {once: false, passive: true});
+                keydownHandler = recordInteraction('keydown');
+                document.addEventListener('keydown', keydownHandler, {passive: true});
             }
 
             // Track memory usage if available
@@ -652,9 +668,9 @@
                 // Get JS Heap Size if available (Chrome only)
                 if (performance.memory) {
                     performanceMetrics.memoryUsage = performanceMetrics.memoryUsage || {};
-                    performanceMetrics.memoryUsage.jsHeapSizeLimit = Math.round(performance.memory.jsHeapSizeLimit / 1048576) + 'MB';
-                    performanceMetrics.memoryUsage.totalJSHeapSize = Math.round(performance.memory.totalJSHeapSize / 1048576) + 'MB';
-                    performanceMetrics.memoryUsage.usedJSHeapSize = Math.round(performance.memory.usedJSHeapSize / 1048576) + 'MB';
+                    performanceMetrics.memoryUsage.jsHeapSizeLimit = Math.round(performance.memory.jsHeapSizeLimit / BYTES_TO_MB) + 'MB';
+                    performanceMetrics.memoryUsage.totalJSHeapSize = Math.round(performance.memory.totalJSHeapSize / BYTES_TO_MB) + 'MB';
+                    performanceMetrics.memoryUsage.usedJSHeapSize = Math.round(performance.memory.usedJSHeapSize / BYTES_TO_MB) + 'MB';
                     
                     if (isDevelopment) {
                         console.log('JS Heap Memory:', performanceMetrics.memoryUsage);
@@ -699,15 +715,18 @@
             }
 
             // Send metrics to Google Analytics
-            function sendMetricsToGA() {
+            var metricsSent = false;
+            
+            function sendMetricsToGA(includeInteraction) {
                 try {
                     var metrics = aggregateMetrics();
                     
-                    // Send aggregated metrics as a single event
-                    if (typeof gtag !== 'undefined') {
+                    // Only send if we have meaningful data and haven't sent before
+                    // OR if we're sending updated interaction data
+                    if (typeof gtag !== 'undefined' && (!metricsSent || (includeInteraction && metrics.interactionResponseTime > 0))) {
                         gtag('event', 'performance_metrics', {
                             event_category: 'Performance',
-                            event_label: 'Page Performance Metrics',
+                            event_label: includeInteraction ? 'Updated Interaction Metrics' : 'Page Performance Metrics',
                             page_load_time: metrics.pageLoadTime,
                             dom_content_loaded_time: metrics.domContentLoadedTime,
                             lcp: metrics.lcp,
@@ -722,12 +741,16 @@
                             non_interaction: true
                         });
 
+                        if (!metricsSent) {
+                            metricsSent = true;
+                        }
+
                         if (isDevelopment) {
-                            console.log('Performance metrics sent to Google Analytics');
+                            console.log('Performance metrics sent to Google Analytics' + (includeInteraction ? ' (with interaction data)' : ''));
                             console.log('Aggregated Metrics:', metrics);
                         }
                     } else {
-                        if (isDevelopment) {
+                        if (isDevelopment && typeof gtag === 'undefined') {
                             console.warn('Google Analytics (gtag) not available');
                         }
                     }
@@ -767,13 +790,13 @@
                     getResourceTiming();
                     getMemoryUsage();
                     
-                    // Send metrics to Google Analytics
-                    sendMetricsToGA();
+                    // Send initial metrics to Google Analytics
+                    sendMetricsToGA(false);
                     
-                    // Additional delay for interaction metrics (send after 5 seconds)
+                    // Additional delay for interaction metrics (send update after 5 seconds if collected)
                     setTimeout(function() {
-                        if (performanceMetrics.interactionResponseTime > 0) {
-                            sendMetricsToGA();
+                        if (performanceMetrics.interactionResponseTime > 0 && metricsSent) {
+                            sendMetricsToGA(true);
                         }
                     }, 5000);
                 }, 1000);
