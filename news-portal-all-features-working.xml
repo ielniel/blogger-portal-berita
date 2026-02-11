@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Blogger Template</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            color: #000000;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        body.dark-mode {
+            background-color: #000000;
+            color: #ffffff;
+        }
+        /* Add styles for notification, search, bookmark, and newsletter components */
+        .notification { margin: 20px; padding: 15px; background-color: #f0f0f0; border: 1px solid #ccc; }
+        .search-bar { margin: 10px; }
+        .bookmark { color: blue; cursor: pointer; }
+        .newsletter { margin: 20px; padding: 15px; background-color: #f0f0f0; border: 1px solid #ccc; }
+    </style>
+    <script>
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+        }
+        function sendNotification(message) {
+            alert(message);
+        }
+        function searchPosts(query) {
+            // Implement search logic
+            console.log('Searching for:', query);
+        }
+    </script>
+</head>
+<body>
+    <header><h1>My Blogger Portal</h1></header>
+
+    <button onclick='toggleDarkMode()'>Toggle Dark Mode</button>
+    <div class='notification'>You have new notifications!</div>
+
+    <div class='search-bar'>
+        <input type='text' placeholder='Search...' onkeyup='searchPosts(this.value)'>
+    </div>
+
+    <div class='bookmark' onclick="sendNotification('Bookmarked!')">Bookmark this page</div>
+
+    <div class='newsletter'>
+        <h2>Subscribe to our Newsletter</h2>
+        <input type='email' placeholder='Your email'>
+        <button>Subscribe</button>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Blogger Portal</p>
+    </footer>
+</body>
+</html>
