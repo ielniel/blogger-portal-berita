@@ -130,11 +130,11 @@
                                             <div class='post-meta'>
                                                 <span class='post-meta-item'>
                                                     <span>Read time</span>
-                                                    <span id='readTime'>5 min</span>
+                                                    <span class='readTime'>5 min</span>
                                                 </span>
                                                 <span class='post-meta-item'>
                                                     <span>Views</span>
-                                                    <span class='viewCount' id='views'>0</span>
+                                                    <span class='viewCount'>0</span>
                                                 </span>
                                             </div>
                                             <div class='post-date'><time itemprop='datePublished'><data:post.date/></time></div>
@@ -1051,7 +1051,7 @@
         <p class='footer-credit'>Trusted news source since 2026</p>
     </footer>
 
-    <script type='text/javascript'>
+    <script defer='true' type='text/javascript'>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag(&#39;js&#39;, new Date());
@@ -1142,20 +1142,22 @@
             return minutes + &#39; min&#39;;
         }
 
-        var readTimeElements = document.querySelectorAll(&#39;#readTime&#39;);
-        readTimeElements.forEach(function(el) {
-            var card = el.closest(&#39;.post-card&#39;);
-            var excerpt = card.querySelector(&#39;.post-excerpt&#39;);
-            if (excerpt) {
-                var readTime = calculateReadTime(excerpt.textContent);
-                el.textContent = readTime;
-            }
-        });
+        document.addEventListener(&#39;DOMContentLoaded&#39;, function() {
+            var readTimeElements = document.querySelectorAll(&#39;.readTime&#39;);
+            readTimeElements.forEach(function(el) {
+                var card = el.closest(&#39;.post-card&#39;);
+                var excerpt = card.querySelector(&#39;.post-excerpt&#39;);
+                if (excerpt) {
+                    var readTime = calculateReadTime(excerpt.textContent);
+                    el.textContent = readTime;
+                }
+            });
 
-        var viewCounts = document.querySelectorAll(&#39;.viewCount&#39;);
-        viewCounts.forEach(function(el) {
-            var randomViews = Math.floor(Math.random() * 5000) + 100;
-            el.textContent = randomViews.toLocaleString();
+            var viewCounts = document.querySelectorAll(&#39;.viewCount&#39;);
+            viewCounts.forEach(function(el) {
+                var randomViews = Math.floor(Math.random() * 5000) + 100;
+                el.textContent = randomViews.toLocaleString();
+            });
         });
 
         document.addEventListener(&#39;DOMContentLoaded&#39;, function() {
