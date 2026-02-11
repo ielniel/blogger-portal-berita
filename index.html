@@ -419,6 +419,373 @@
                 gtag('event', 'popular_post_click', {post_title: title, rank: rank});
             });
         });
+
+        // ==========================================
+        // Performance Monitoring System
+        // ==========================================
+        (function() {
+            'use strict';
+            
+            // Check if Performance API is supported
+            if (!window.performance || !window.performance.timing) {
+                console.warn('Performance API not supported in this browser');
+                return;
+            }
+
+            var isDevelopment = window.location.hostname === 'localhost' || 
+                               window.location.hostname === '127.0.0.1' ||
+                               window.location.hostname.includes('test');
+            
+            // Store all performance metrics
+            var performanceMetrics = {
+                pageLoadTime: 0,
+                domContentLoadedTime: 0,
+                lcp: 0,
+                fid: 0,
+                cls: 0,
+                resourceTiming: {
+                    images: [],
+                    scripts: []
+                },
+                interactionResponseTime: 0,
+                memoryUsage: null,
+                timestamp: new Date().toISOString()
+            };
+
+            // Function to calculate page load time
+            function calculatePageLoadTime() {
+                var timing = window.performance.timing;
+                var navigationStart = timing.navigationStart;
+                var loadComplete = timing.loadEventEnd;
+                
+                if (loadComplete > 0) {
+                    performanceMetrics.pageLoadTime = loadComplete - navigationStart;
+                    if (isDevelopment) {
+                        console.log('Page Load Time:', performanceMetrics.pageLoadTime + 'ms');
+                    }
+                }
+            }
+
+            // Function to calculate DOM Content Loaded time
+            function calculateDOMContentLoadedTime() {
+                var timing = window.performance.timing;
+                var navigationStart = timing.navigationStart;
+                var domContentLoaded = timing.domContentLoadedEventEnd;
+                
+                if (domContentLoaded > 0) {
+                    performanceMetrics.domContentLoadedTime = domContentLoaded - navigationStart;
+                    if (isDevelopment) {
+                        console.log('DOM Content Loaded Time:', performanceMetrics.domContentLoadedTime + 'ms');
+                    }
+                }
+            }
+
+            // Function to get resource timing
+            function getResourceTiming() {
+                if (!window.performance.getEntriesByType) {
+                    return;
+                }
+
+                var resources = window.performance.getEntriesByType('resource');
+                
+                resources.forEach(function(resource) {
+                    var loadTime = resource.responseEnd - resource.startTime;
+                    
+                    // Track image load times
+                    if (resource.initiatorType === 'img' || 
+                        resource.name.match(/\.(jpg|jpeg|png|gif|webp|svg)$/i)) {
+                        performanceMetrics.resourceTiming.images.push({
+                            url: resource.name,
+                            duration: Math.round(loadTime),
+                            size: resource.transferSize || 0
+                        });
+                    }
+                    
+                    // Track script load times
+                    if (resource.initiatorType === 'script' || 
+                        resource.name.match(/\.js$/i)) {
+                        performanceMetrics.resourceTiming.scripts.push({
+                            url: resource.name,
+                            duration: Math.round(loadTime),
+                            size: resource.transferSize || 0
+                        });
+                    }
+                });
+
+                if (isDevelopment) {
+                    console.log('Image Load Times:', performanceMetrics.resourceTiming.images);
+                    console.log('Script Load Times:', performanceMetrics.resourceTiming.scripts);
+                }
+            }
+
+            // Core Web Vitals: Largest Contentful Paint (LCP)
+            function observeLCP() {
+                if (!window.PerformanceObserver) {
+                    return;
+                }
+
+                try {
+                    var lcpObserver = new PerformanceObserver(function(entryList) {
+                        var entries = entryList.getEntries();
+                        var lastEntry = entries[entries.length - 1];
+                        performanceMetrics.lcp = Math.round(lastEntry.startTime);
+                        
+                        if (isDevelopment) {
+                            console.log('LCP (Largest Contentful Paint):', performanceMetrics.lcp + 'ms');
+                        }
+                    });
+                    
+                    lcpObserver.observe({type: 'largest-contentful-paint', buffered: true});
+                } catch (e) {
+                    if (isDevelopment) {
+                        console.warn('LCP observation not supported:', e);
+                    }
+                }
+            }
+
+            // Core Web Vitals: First Input Delay (FID)
+            function observeFID() {
+                if (!window.PerformanceObserver) {
+                    return;
+                }
+
+                try {
+                    var fidObserver = new PerformanceObserver(function(entryList) {
+                        var entries = entryList.getEntries();
+                        entries.forEach(function(entry) {
+                            performanceMetrics.fid = Math.round(entry.processingStart - entry.startTime);
+                            
+                            if (isDevelopment) {
+                                console.log('FID (First Input Delay):', performanceMetrics.fid + 'ms');
+                            }
+                        });
+                    });
+                    
+                    fidObserver.observe({type: 'first-input', buffered: true});
+                } catch (e) {
+                    if (isDevelopment) {
+                        console.warn('FID observation not supported:', e);
+                    }
+                }
+            }
+
+            // Core Web Vitals: Cumulative Layout Shift (CLS)
+            function observeCLS() {
+                if (!window.PerformanceObserver) {
+                    return;
+                }
+
+                try {
+                    var clsValue = 0;
+                    var clsObserver = new PerformanceObserver(function(entryList) {
+                        var entries = entryList.getEntries();
+                        entries.forEach(function(entry) {
+                            if (!entry.hadRecentInput) {
+                                clsValue += entry.value;
+                                performanceMetrics.cls = Math.round(clsValue * 1000) / 1000;
+                            }
+                        });
+                        
+                        if (isDevelopment) {
+                            console.log('CLS (Cumulative Layout Shift):', performanceMetrics.cls);
+                        }
+                    });
+                    
+                    clsObserver.observe({type: 'layout-shift', buffered: true});
+                } catch (e) {
+                    if (isDevelopment) {
+                        console.warn('CLS observation not supported:', e);
+                    }
+                }
+            }
+
+            // Track user interaction response time
+            function trackInteractionResponseTime() {
+                var interactions = [];
+                
+                function recordInteraction(eventType) {
+                    return function(e) {
+                        var startTime = performance.now();
+                        
+                        requestAnimationFrame(function() {
+                            var endTime = performance.now();
+                            var responseTime = endTime - startTime;
+                            interactions.push({
+                                type: eventType,
+                                responseTime: Math.round(responseTime)
+                            });
+                            
+                            // Calculate average after collecting some interactions
+                            if (interactions.length >= 5) {
+                                var total = interactions.reduce(function(sum, item) {
+                                    return sum + item.responseTime;
+                                }, 0);
+                                performanceMetrics.interactionResponseTime = Math.round(total / interactions.length);
+                                
+                                if (isDevelopment) {
+                                    console.log('Average Interaction Response Time:', performanceMetrics.interactionResponseTime + 'ms');
+                                }
+                            }
+                        });
+                    };
+                }
+                
+                // Track click interactions
+                document.addEventListener('click', recordInteraction('click'), {once: false, passive: true});
+                
+                // Track keyboard interactions
+                document.addEventListener('keydown', recordInteraction('keydown'), {once: false, passive: true});
+            }
+
+            // Track memory usage if available
+            function getMemoryUsage() {
+                if (navigator.deviceMemory) {
+                    performanceMetrics.memoryUsage = {
+                        deviceMemory: navigator.deviceMemory + 'GB'
+                    };
+                    
+                    if (isDevelopment) {
+                        console.log('Device Memory:', performanceMetrics.memoryUsage.deviceMemory);
+                    }
+                }
+
+                // Get JS Heap Size if available (Chrome only)
+                if (performance.memory) {
+                    performanceMetrics.memoryUsage = performanceMetrics.memoryUsage || {};
+                    performanceMetrics.memoryUsage.jsHeapSizeLimit = Math.round(performance.memory.jsHeapSizeLimit / 1048576) + 'MB';
+                    performanceMetrics.memoryUsage.totalJSHeapSize = Math.round(performance.memory.totalJSHeapSize / 1048576) + 'MB';
+                    performanceMetrics.memoryUsage.usedJSHeapSize = Math.round(performance.memory.usedJSHeapSize / 1048576) + 'MB';
+                    
+                    if (isDevelopment) {
+                        console.log('JS Heap Memory:', performanceMetrics.memoryUsage);
+                    }
+                }
+            }
+
+            // Aggregate metrics for summary
+            function aggregateMetrics() {
+                var summary = {
+                    pageLoadTime: performanceMetrics.pageLoadTime,
+                    domContentLoadedTime: performanceMetrics.domContentLoadedTime,
+                    lcp: performanceMetrics.lcp,
+                    fid: performanceMetrics.fid,
+                    cls: performanceMetrics.cls,
+                    avgImageLoadTime: 0,
+                    avgScriptLoadTime: 0,
+                    totalImages: performanceMetrics.resourceTiming.images.length,
+                    totalScripts: performanceMetrics.resourceTiming.scripts.length,
+                    interactionResponseTime: performanceMetrics.interactionResponseTime,
+                    memoryUsage: performanceMetrics.memoryUsage,
+                    timestamp: performanceMetrics.timestamp
+                };
+
+                // Calculate average image load time
+                if (performanceMetrics.resourceTiming.images.length > 0) {
+                    var totalImageTime = performanceMetrics.resourceTiming.images.reduce(function(sum, img) {
+                        return sum + img.duration;
+                    }, 0);
+                    summary.avgImageLoadTime = Math.round(totalImageTime / performanceMetrics.resourceTiming.images.length);
+                }
+
+                // Calculate average script load time
+                if (performanceMetrics.resourceTiming.scripts.length > 0) {
+                    var totalScriptTime = performanceMetrics.resourceTiming.scripts.reduce(function(sum, script) {
+                        return sum + script.duration;
+                    }, 0);
+                    summary.avgScriptLoadTime = Math.round(totalScriptTime / performanceMetrics.resourceTiming.scripts.length);
+                }
+
+                return summary;
+            }
+
+            // Send metrics to Google Analytics
+            function sendMetricsToGA() {
+                try {
+                    var metrics = aggregateMetrics();
+                    
+                    // Send aggregated metrics as a single event
+                    if (typeof gtag !== 'undefined') {
+                        gtag('event', 'performance_metrics', {
+                            event_category: 'Performance',
+                            event_label: 'Page Performance Metrics',
+                            page_load_time: metrics.pageLoadTime,
+                            dom_content_loaded_time: metrics.domContentLoadedTime,
+                            lcp: metrics.lcp,
+                            fid: metrics.fid,
+                            cls: metrics.cls,
+                            avg_image_load_time: metrics.avgImageLoadTime,
+                            avg_script_load_time: metrics.avgScriptLoadTime,
+                            total_images: metrics.totalImages,
+                            total_scripts: metrics.totalScripts,
+                            interaction_response_time: metrics.interactionResponseTime,
+                            device_memory: metrics.memoryUsage ? metrics.memoryUsage.deviceMemory : 'N/A',
+                            non_interaction: true
+                        });
+
+                        if (isDevelopment) {
+                            console.log('Performance metrics sent to Google Analytics');
+                            console.log('Aggregated Metrics:', metrics);
+                        }
+                    } else {
+                        if (isDevelopment) {
+                            console.warn('Google Analytics (gtag) not available');
+                        }
+                    }
+                } catch (e) {
+                    if (isDevelopment) {
+                        console.error('Error sending metrics to GA:', e);
+                    }
+                }
+            }
+
+            // Initialize performance monitoring
+            function initPerformanceMonitoring() {
+                // Start observing Core Web Vitals immediately
+                observeLCP();
+                observeFID();
+                observeCLS();
+                
+                // Track user interactions
+                trackInteractionResponseTime();
+
+                // Wait for page to be fully loaded
+                if (document.readyState === 'complete') {
+                    collectAndSendMetrics();
+                } else {
+                    window.addEventListener('load', function() {
+                        collectAndSendMetrics();
+                    });
+                }
+            }
+
+            // Collect and send all metrics
+            function collectAndSendMetrics() {
+                // Small delay to ensure all metrics are collected
+                setTimeout(function() {
+                    calculatePageLoadTime();
+                    calculateDOMContentLoadedTime();
+                    getResourceTiming();
+                    getMemoryUsage();
+                    
+                    // Send metrics to Google Analytics
+                    sendMetricsToGA();
+                    
+                    // Additional delay for interaction metrics (send after 5 seconds)
+                    setTimeout(function() {
+                        if (performanceMetrics.interactionResponseTime > 0) {
+                            sendMetricsToGA();
+                        }
+                    }, 5000);
+                }, 1000);
+            }
+
+            // Start monitoring
+            if (isDevelopment) {
+                console.log('Performance Monitoring initialized');
+            }
+            
+            initPerformanceMonitoring();
+        })();
     </script>
 </body>
 </html>
